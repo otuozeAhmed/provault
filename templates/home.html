@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        <h1>Hello {{ request.user.username }}</h1>
+        <p>Welcome to your dashboard.</p>
+
+        <div class="clone">
+            <h2>{{ request.user.group|title }}</h2>
+            <h5>Hi {{ request.user.username }}! You Are A Registered User To This Group</h5>
+        </div>
+    {% else %}
+        <h1>Hello Guest!</h1>
+        <p>You Don't Have A Dashboard Yet.</p>
+
+        <div class="clone">
+            <h5>Kindly <a href="{% url "login" %}">Login Here</a> or <a href="{% url "signup" %}">Create An Account</a> For Full Access</h5>
+        </div>
+    {% endif %}
+
+{% endblock %}
